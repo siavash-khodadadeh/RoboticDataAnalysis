@@ -15,14 +15,18 @@ class Item(object):
 
 
 class Try(object):
-    def __init__(self, is_successful, user, items):
-        self.is_successful = is_successful
+    def __init__(self, items):
         self.duration = 0
-        self.user = user
-        self.items = items
+        self.items_positions = {}
+        for item in items:
+            self.items_positions[item.name] = []
+
+    def add_item_position(self, item, position):
+        self.items_positions[item.name].append(position)
 
 
 class Task(object):
-    def __init__(self, name, tries):
+    def __init__(self, name, user, tries):
         self.name = name
+        self.user = user
         self.tries = tries
